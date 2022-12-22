@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapsi &mdash; Use maps better</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+    <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <script defer type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="left__logo">
+          <div class="left__logo--heading">Mapsi &mdash;</div>
+          <div class="left__logo--icon icon">By silson</div>
+        </div>
+
+        <div class="left__heading">
+          <h1 class="left__heading--header h1">Find location</h1>
+        </div>
+
+        <div class="left__search">
+          <input type="text" class="left__search--input" placeholder="Search for a place" />
+          <button class="left__search--button button">
+            <svg class="btn--icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="left__selected">Selected Location</div>
+        <div class="left__country"></div>
+
+        <div class="left__display">Display</div>
+        <div class="left__box">
+          <button class="left__box--button button">Normal view</button>
+          <button class="left__box--button button">Satellite view</button>
+          <button class="left__box--button button">Live weather</button>
+          <button class="left__box--button button">Country details</button>
+          <button class="left__box--button button">Mark an event</button>
+          <button class="left__box--button button">Information</button>
+        </div>
+      </div>
+
+      <main class="right" id="map"></main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  height: 100vh;
+  font-size: 2rem;
+  background-color: #1c202a;
+  padding: 2rem 2rem;
+}
+
+.left {
+  flex-basis: 20vw;
+  padding: 0rem 2rem;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--heading {
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+  }
+
+  &__heading {
+    margin-top: 4rem;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background-color: #313644;
+    // glowing background
+
+    &--input {
+      border: none;
+      background-color: #313644;
+      color: #c6c6c7;
+      font-size: 1.5rem;
+      font-weight: 400;
+      width: 100%;
+      outline: none;
+
+      &::placeholder {
+        color: #bcc5e0;
+      }
+    }
+
+    &--button {
+      border: none;
+      background-color: #313644;
+      color: #f6f6f9;
+      font-size: 1.5rem;
+      font-weight: 400;
+      cursor: pointer;
+    }
+  }
+
+  &__selected {
+    margin-top: 4rem;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #c6c6c7;
+  }
+
+  &__country {
+    margin-top: 1rem;
+    height: 15rem;
+    background-color: #272c39;
+    border-radius: 1rem;
+  }
+
+  &__display {
+    margin-top: 4rem;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #c6c6c7;
+  }
+
+  &__box {
+    margin-top: 1rem;
+    border-radius: 1rem;
+    // Make a grid with 3 columns and 2 rows
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+
+    &--button {
+      background-color: #272c39;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #f6f6f9;
+      cursor: pointer;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.2rem;
+      outline: none;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background-color: #313644;
+      }
+
+      &:active {
+        background-color: #373e4b;
+      }
+    }
+  }
+}
+
+.right {
+  margin-left: 2rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
