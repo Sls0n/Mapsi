@@ -12,6 +12,11 @@ let map;
 let searchValue;
 
 const mapTemplate = function () {
+  // Remove previous tile layer
+  map.eachLayer(function (layer) {
+    map.removeLayer(layer);
+  });
+
   // Normal view
   if (button_1.classList.contains('hidden-button'))
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -120,19 +125,24 @@ search.addEventListener('keypress', function (e) {
   }
 });
 
-buttons.forEach(btn => {
-  btn.addEventListener('click', function (e) {
-    btn.classList.toggle('hidden-button');
-  });
-});
-
-// When button 1 is clicked it will remove the hidden-button class from button 2 and add it to button 1. Same for button 2. This is done so that only one button is active at a time. If button 1 is active, button 2 will be inactive and vice versa.
+// Button 1 and button 2 event listeners to change the map template
 button_1.addEventListener('click', function (e) {
+  button_1.classList.add('hidden-button');
   button_2.classList.remove('hidden-button');
   mapTemplate();
 });
 
 button_2.addEventListener('click', function (e) {
+  button_2.classList.add('hidden-button');
   button_1.classList.remove('hidden-button');
   mapTemplate();
+});
+
+// Looping through all the buttons and adding event listener to each button
+buttons.forEach(btn => {
+  // skip the first and second button
+  if (btn.classList.contains('button-1') || btn.classList.contains('button-2')) return;
+  btn.addEventListener('click', function (e) {
+    btn.classList.toggle('hidden-button');
+  });
 });
