@@ -1,12 +1,41 @@
 const container = document.querySelector('.container');
 const mapContainer = document.querySelector('#map');
 const button = document.querySelector('.button');
+const button_1 = document.querySelector('.button-1');
+const button_2 = document.querySelector('.button-2');
 const search = document.querySelector('.left__search--input');
 const searchBtn = document.querySelector('.left__search--button');
+const buttons = document.querySelectorAll('[data-button]');
 
 let marker;
 let map;
 let searchValue;
+
+const mapTemplate = function () {
+  // Normal view
+  if (button_1.classList.contains('hidden-button'))
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+  // Satellite view
+  if (button_2.classList.contains('hidden-button'))
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+    }).addTo(map);
+};
+
+const addMarker = function (lat, lng) {
+  if (marker) map.removeLayer(marker);
+
+  marker = L.marker([lat, lng]).addTo(map);
+
+  map.flyTo([lat, lng], map._zoom, {
+    duration: 5,
+    easeLinearity: 0.5,
+  });
+  marker.bindPopup('Selected Country').openPopup();
+};
 
 const locationSearch = async function (searchValue) {
   try {
@@ -17,6 +46,7 @@ const locationSearch = async function (searchValue) {
     if (!response.ok) throw new Error(`Problem with geocoding ${response.status}`);
     // Converting response to json if response is ok
     const data = await response.json();
+    console.log(data);
     // Getting lat and lng
     const lat = data[0].lat;
     const lng = data[0].lon;
@@ -29,7 +59,7 @@ const locationSearch = async function (searchValue) {
 const locationDetails = async function (lat, lng) {
   try {
     // Getting data from API
-    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`);
+    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=${map._zoom}`);
 
     // If response is not ok, throw error
     if (!response.ok) throw new Error(`Problem with geocoding ${response.status}`);
@@ -42,17 +72,6 @@ const locationDetails = async function (lat, lng) {
   }
 };
 
-const addMarker = function (lat, lng) {
-  if (marker) map.removeLayer(marker);
-
-  marker = L.marker([lat, lng]).addTo(map);
-  marker.setLatLng([lat, lng], {
-    duration: 2000,
-    easing: 'linear',
-  });
-  marker.bindPopup('Hi').openPopup();
-};
-
 navigator.geolocation.getCurrentPosition(
   res => {
     const lat = res.coords.latitude;
@@ -60,15 +79,15 @@ navigator.geolocation.getCurrentPosition(
 
     map = L.map('map', {
       center: [lat, lng],
-      zoom: 5,
+      zoom: 10,
       inertia: true,
       inertiaDeceleration: 2000,
+      enableHighAccuracy: true,
+      animate: true,
     });
 
     // Adding tile layer to map (like a template)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    mapTemplate();
 
     // On click event on the map, it will add a marker and popup
     map.on('click', function (e) {
@@ -99,4 +118,21 @@ search.addEventListener('keypress', function (e) {
     searchValue = search.value;
     locationSearch(searchValue);
   }
+});
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    btn.classList.toggle('hidden-button');
+  });
+});
+
+// When button 1 is clicked it will remove the hidden-button class from button 2 and add it to button 1. Same for button 2. This is done so that only one button is active at a time. If button 1 is active, button 2 will be inactive and vice versa.
+button_1.addEventListener('click', function (e) {
+  button_2.classList.remove('hidden-button');
+  mapTemplate();
+});
+
+button_2.addEventListener('click', function (e) {
+  button_1.classList.remove('hidden-button');
+  mapTemplate();
 });
