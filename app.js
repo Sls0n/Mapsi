@@ -25,7 +25,7 @@ const mapTemplate = function () {
 
   // Normal view
   if (button_1.classList.contains('hidden-button'))
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.jp/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
@@ -69,11 +69,12 @@ const locationSearch = async function (searchValue) {
     // Setting zoom level according to importance of the given location
     if (importance > 0.85) map.setZoom(4);
     else if (importance > 0.8) map.setZoom(6);
-    else if (importance > 0.6) map.setZoom(8);
-    else if (importance > 0.5) map.setZoom(10);
-    else if (importance > 0.4) map.setZoom(12);
-    else if (importance > 0.2) map.setZoom(14);
-    else if (importance > 0.1) map.setZoom(16);
+    else if (importance > 0.7) map.setZoom(7);
+    else if (importance > 0.6) map.setZoom(9);
+    else if (importance > 0.5) map.setZoom(11);
+    else if (importance > 0.4) map.setZoom(13);
+    else if (importance > 0.2) map.setZoom(16);
+    else if (importance > 0.1) map.setZoom(17);
     else map.setZoom(18);
     addMarker(lat, lng);
   } catch (err) {
@@ -177,7 +178,7 @@ buttons.forEach(btn => {
 
 // Button 5 and button 6 event listeners to make the map maxed out and minned out
 button_5.addEventListener('click', function (e) {
-  map.setZoom(17);
+  map.setZoom(18);
 });
 
 button_6.addEventListener('click', function (e) {
