@@ -1,15 +1,21 @@
+// Selectors
 const container = document.querySelector('.container');
 const mapContainer = document.querySelector('#map');
 const button = document.querySelector('.button');
 const button_1 = document.querySelector('.button-1');
 const button_2 = document.querySelector('.button-2');
+const button_5 = document.querySelector('.button-5');
+const button_6 = document.querySelector('.button-6');
 const search = document.querySelector('.left__search--input');
 const searchBtn = document.querySelector('.left__search--button');
 const buttons = document.querySelectorAll('[data-button]');
 
+// Variables
 let marker;
 let map;
 let searchValue;
+
+// Main Logic
 
 const mapTemplate = function () {
   // Remove previous tile layer
@@ -30,16 +36,20 @@ const mapTemplate = function () {
     }).addTo(map);
 };
 
-const addMarker = function (lat, lng) {
+const addMarker = function (lat, lng, flyTo = true) {
+  // flyTo = true, to make the default marker not use the flyTo animation when the user loads the page. But it will use the flyTo animation when the user clicks on the map to add a marker.
   if (marker) map.removeLayer(marker);
 
   marker = L.marker([lat, lng]).addTo(map);
 
-  map.flyTo([lat, lng], map._zoom, {
-    duration: 5,
-    easeLinearity: 0.5,
-  });
-  marker.bindPopup('Selected Country').openPopup();
+  if (flyTo) {
+    map.flyTo([lat, lng], map._zoom, {
+      duration: 4,
+      easeLinearity: 0.5,
+    });
+  }
+
+  // marker.bindPopup('Selected Country').openPopup();
 };
 
 const locationSearch = async function (searchValue) {
@@ -55,6 +65,16 @@ const locationSearch = async function (searchValue) {
     // Getting lat and lng
     const lat = data[0].lat;
     const lng = data[0].lon;
+    const importance = data[0].importance;
+    // Setting zoom level according to importance of the given location
+    if (importance > 0.85) map.setZoom(4);
+    else if (importance > 0.8) map.setZoom(6);
+    else if (importance > 0.6) map.setZoom(8);
+    else if (importance > 0.5) map.setZoom(10);
+    else if (importance > 0.4) map.setZoom(12);
+    else if (importance > 0.2) map.setZoom(14);
+    else if (importance > 0.1) map.setZoom(16);
+    else map.setZoom(18);
     addMarker(lat, lng);
   } catch (err) {
     alert(err);
@@ -84,15 +104,23 @@ navigator.geolocation.getCurrentPosition(
 
     map = L.map('map', {
       center: [lat, lng],
-      zoom: 10,
+      zoom: 16,
       inertia: true,
       inertiaDeceleration: 2000,
       enableHighAccuracy: true,
-      animate: true,
+      minZoom: 2,
     });
+
+    // add a max bounds to the map
+    map.setMaxBounds([
+      [-180, -360], //
+      [180, 360],
+    ]);
 
     // Adding tile layer to map (like a template)
     mapTemplate();
+    // Ading default marker to map, with flyto animation set to false
+    addMarker(lat, lng, false);
 
     // On click event on the map, it will add a marker and popup
     map.on('click', function (e) {
@@ -140,9 +168,18 @@ button_2.addEventListener('click', function (e) {
 
 // Looping through all the buttons and adding event listener to each button
 buttons.forEach(btn => {
-  // skip the first and second button
-  if (btn.classList.contains('button-1') || btn.classList.contains('button-2')) return;
+  // skip the first, second, secondlast and last button
+  if (btn.classList.contains('button-1') || btn.classList.contains('button-2') || btn.classList.contains('button-5') || btn.classList.contains('button-6')) return;
   btn.addEventListener('click', function (e) {
     btn.classList.toggle('hidden-button');
   });
+});
+
+// Button 5 and button 6 event listeners to make the map maxed out and minned out
+button_5.addEventListener('click', function (e) {
+  map.setZoom(17);
+});
+
+button_6.addEventListener('click', function (e) {
+  map.setZoom(3);
 });
