@@ -84,6 +84,14 @@ h6 {
   color: #13141C !important;
 }
 
+.icon-button {
+  color: #f6f6f9 !important;
+  width: 2rem;
+  height: 2rem;
+  display: inline;
+  vertical-align: middle;
+}
+
 .container {
   display: flex;
   height: 100vh;
@@ -202,11 +210,50 @@ h6 {
 }
 
 .right {
+  position: relative;
   border-radius: 0.5rem;
   margin-left: 2rem;
-  display: flex;
   flex: 1;
-  flex-direction: column;
+  z-index: 1;
+}
+.right__weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  width: 20rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(0.5rem);
+          backdrop-filter: blur(0.5rem);
+  border-radius: 100%;
+  z-index: 100000;
+  position: absolute;
+  top: 30%;
+  right: 0;
+  margin-right: 2rem;
+  padding: 1rem 1rem;
+  box-shadow: 0.1rem 5rem 10rem rgba(178, 227, 0, 0.5);
+  font-size: 2rem;
+}
+.right__information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  width: 20rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(0.5rem);
+          backdrop-filter: blur(0.5rem);
+  border-radius: 0.5rem;
+  z-index: 100000;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 3rem;
+  margin-right: 2rem;
+  padding: 1rem 1rem;
+  box-shadow: 0.1rem 5rem 10rem rgba(178, 227, 0, 0.5);
+  font-size: 2rem;
 }
 
 :root {
@@ -241,4 +288,8 @@ body {
   font-size: 1.8rem;
   text-align: center;
   padding: 0.5rem 1rem;
+}
+
+.hidden {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

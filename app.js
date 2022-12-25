@@ -1,14 +1,22 @@
-// Selectors
+// Main Selectors
 const container = document.querySelector('.container');
 const mapContainer = document.querySelector('#map');
+// Button selectors
 const button = document.querySelector('.button');
 const button_1 = document.querySelector('.button-1');
 const button_2 = document.querySelector('.button-2');
+const button_3 = document.querySelector('.button-3');
+const button_4 = document.querySelector('.button-4');
 const button_5 = document.querySelector('.button-5');
 const button_6 = document.querySelector('.button-6');
+// Other selectors
 const search = document.querySelector('.left__search--input');
 const searchBtn = document.querySelector('.left__search--button');
 const buttons = document.querySelectorAll('[data-button]');
+const locationBox = document.querySelector('.left__country');
+const weather = document.querySelector('.right__weather');
+const information = document.querySelector('.right__information');
+
 
 // Variables
 let marker;
@@ -62,7 +70,13 @@ const locationSearch = async function (searchValue) {
     // If response is not ok, throw error
     if (!response.ok) throw new Error(`Problem with geocoding ${response.status}`);
     // Converting response to json if response is ok
+    // if data is not found, throw error
     const data = await response.json();
+    if (data.length === 0) {
+      locationBox.innerHTML = 'Location not found! Please try again with a different search term or check the spelling.';
+      throw new Error('Location not found!');
+    }
+
     // Getting lat and lng
     const lat = data[0].lat;
     const lng = data[0].lon;
@@ -96,7 +110,7 @@ const locationDetails = async function (lat, lng) {
     const data = await response.json();
 
     const html = `${data.display_name}`;
-    document.querySelector('.left__country').innerHTML = html;
+    locationBox.innerHTML = html;
 
     if (data.error) alert(`${data.error}, location not found!`);
 
@@ -168,8 +182,6 @@ search.addEventListener('keypress', function (e) {
 button_5.addEventListener('click', function (e) {
   button_5.classList.add('hidden-button-2');
   button_6.classList.remove('hidden-button-2');
-  button_1.classList.add('hidden-button');
-  button_2.classList.remove('hidden-button');
 
   button_1.style.cursor = 'pointer';
   button_1.style.pointerEvents = 'auto';
@@ -192,7 +204,7 @@ button_6.addEventListener('click', function (e) {
 
   mapTemplate();
   map.setZoom(18);
-  map.setMinZoom(16);
+  map.setMinZoom(15);
 });
 
 // Button 1 and button 2 event listeners to change the map template
@@ -206,6 +218,15 @@ button_2.addEventListener('click', function (e) {
   button_2.classList.add('hidden-button');
   button_1.classList.remove('hidden-button');
   mapTemplate();
+});
+
+// Button 3 and button 4 event listeners to toggle on their respective functions
+button_3.addEventListener('click', function (e) {
+  weather.classList.toggle('hidden');
+});
+
+button_4.addEventListener('click', function (e) {
+  information.classList.toggle('hidden');
 });
 
 // Looping through all the buttons and adding event listener to each button
