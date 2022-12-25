@@ -1,3 +1,5 @@
+import './node_modules/leaflet-edgebuffer/src/leaflet.edgebuffer.js';
+
 // Selectors
 const container = document.querySelector('.container');
 const mapContainer = document.querySelector('#map');
