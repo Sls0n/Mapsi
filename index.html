@@ -16,7 +16,6 @@
     <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
     <script defer type="module" src="app.js"></script>
-
   </head>
   <body>
     <div class="container">
@@ -44,12 +43,16 @@
 
         <div class="left__display">Display</div>
         <div class="left__box">
-          <button class="left__box--button button button-1 hidden-button" data-button="1">Normal view</button>
+          <button class="left__box--button button button-1 hidden-button" data-button="1">Default view</button>
           <button class="left__box--button button button-2" data-button="2">Aerial view</button>
           <button class="left__box--button button button-3" data-button="3">Live weather</button>
           <button class="left__box--button button button-4" data-button="4">Country details</button>
-          <button class="left__box--button button button-5" data-button="5">Max zoom (+)</button>
-          <button class="left__box--button button button-6" data-button="6">Min zoom (-)</button>
+        </div>
+
+        <div class="left__mode">Mode</div>
+        <div class="left__box">
+          <button class="left__box--button button button-5 hidden-button-2" data-button="5">Default mode</button>
+          <button class="left__box--button button button-6" data-button="6">Explorer mode</button>
         </div>
       </div>
 

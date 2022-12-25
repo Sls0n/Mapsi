@@ -67,14 +67,17 @@ const locationSearch = async function (searchValue) {
     const lat = data[0].lat;
     const lng = data[0].lon;
     const importance = data[0].importance;
+
     // Setting zoom level according to importance of the given location
-    if (importance > 0.85) map.setZoom(5);
+    if (data[0].class === 'tourism' || data[0].class === 'road' || data[0].class === 'amenity') map.setZoom(18);
+    else if (importance > 0.85) map.setZoom(5);
     else if (importance > 0.8) map.setZoom(8);
     else if (importance > 0.7) map.setZoom(14);
     else if (importance > 0.6) map.setZoom(15);
     else if (importance > 0.5) map.setZoom(16);
     else if (importance > 0.4) map.setZoom(17);
     else map.setZoom(18);
+
     addMarker(lat, lng);
   } catch (err) {
     console.error(err);
@@ -96,6 +99,8 @@ const locationDetails = async function (lat, lng) {
     document.querySelector('.left__country').innerHTML = html;
 
     if (data.error) alert(`${data.error}, location not found!`);
+
+    if (data.class === 'tourism') map.setZoom(18);
   } catch (err) {
     console.error(err);
     alert(err);
@@ -159,6 +164,37 @@ search.addEventListener('keypress', function (e) {
   }
 });
 
+// Button 5 and button 6 event listeners
+button_5.addEventListener('click', function (e) {
+  button_5.classList.add('hidden-button-2');
+  button_6.classList.remove('hidden-button-2');
+  button_1.classList.add('hidden-button');
+  button_2.classList.remove('hidden-button');
+
+  button_1.style.cursor = 'pointer';
+  button_1.style.pointerEvents = 'auto';
+  button_1.style.opacity = '1';
+  mapTemplate();
+
+  map.setZoom(16);
+  map.setMinZoom(2);
+});
+
+button_6.addEventListener('click', function (e) {
+  button_6.classList.add('hidden-button-2');
+  button_5.classList.remove('hidden-button-2');
+  button_1.classList.remove('hidden-button');
+  button_2.classList.add('hidden-button');
+
+  button_1.style.cursor = 'no-drop';
+  button_1.style.pointerEvents = 'none';
+  button_1.style.opacity = '0.4';
+
+  mapTemplate();
+  map.setZoom(18);
+  map.setMinZoom(16);
+});
+
 // Button 1 and button 2 event listeners to change the map template
 button_1.addEventListener('click', function (e) {
   button_1.classList.add('hidden-button');
@@ -179,13 +215,4 @@ buttons.forEach(btn => {
   btn.addEventListener('click', function (e) {
     btn.classList.toggle('hidden-button');
   });
-});
-
-// Button 5 and button 6 event listeners to make the map maxed out and minned out
-button_5.addEventListener('click', function (e) {
-  map.setZoom(18);
-});
-
-button_6.addEventListener('click', function (e) {
-  map.setZoom(3);
 });

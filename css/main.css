@@ -79,6 +79,11 @@ h6 {
   color: #13141C !important;
 }
 
+.hidden-button-2 {
+  background-color: #BE96BF !important;
+  color: #13141C !important;
+}
+
 .container {
   display: flex;
   height: 100vh;
@@ -163,6 +168,12 @@ h6 {
   font-weight: 500;
   color: #c6c6c7;
 }
+.left__mode {
+  margin-top: 4rem;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #c6c6c7;
+}
 .left__box {
   margin-top: 1rem;
   border-radius: 1rem;
@@ -179,9 +190,9 @@ h6 {
   color: #f6f6f9;
   cursor: pointer;
   border-radius: 1.5rem;
-  padding: 1.2rem 1.2rem;
+  padding: 1rem 0.8rem;
   outline: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .left__box--button:hover {
   background-color: #313644;
