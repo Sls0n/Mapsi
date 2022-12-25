@@ -14,6 +14,7 @@ const search = document.querySelector('.left__search--input');
 const searchBtn = document.querySelector('.left__search--button');
 const buttons = document.querySelectorAll('[data-button]');
 const locationBox = document.querySelector('.left__country');
+const box = document.querySelector('.left__box');
 const weather = document.querySelector('.right__weather');
 const information = document.querySelector('.right__information');
 
@@ -131,7 +132,6 @@ navigator.geolocation.getCurrentPosition(
       zoom: 16,
       inertia: true,
       inertiaDeceleration: 2000,
-      enableHighAccuracy: true,
       minZoom: 2,
     });
 
@@ -186,6 +186,16 @@ button_5.addEventListener('click', function (e) {
   button_1.style.cursor = 'pointer';
   button_1.style.pointerEvents = 'auto';
   button_1.style.opacity = '1';
+  button_2.style.cursor = 'pointer';
+  button_2.style.pointerEvents = 'auto';
+  button_2.style.opacity = '1';
+  button_3.style.cursor = 'pointer';
+  button_3.style.pointerEvents = 'auto';
+  button_3.style.opacity = '1';
+  button_4.style.cursor = 'pointer';
+  button_4.style.pointerEvents = 'auto';
+  button_4.style.opacity = '1';
+  
   mapTemplate();
 
   map.setZoom(16);
@@ -198,9 +208,16 @@ button_6.addEventListener('click', function (e) {
   button_1.classList.remove('hidden-button');
   button_2.classList.add('hidden-button');
 
-  button_1.style.cursor = 'no-drop';
   button_1.style.pointerEvents = 'none';
   button_1.style.opacity = '0.4';
+  button_2.style.pointerEvents = 'none';
+  button_2.style.opacity = '0.4';
+  button_3.style.pointerEvents = 'none';
+  button_3.style.opacity = '0.4';
+  button_4.style.pointerEvents = 'none';
+  button_4.style.opacity = '0.4';
+
+  box.style.cursor = 'no-drop';
 
   mapTemplate();
   map.setZoom(18);
