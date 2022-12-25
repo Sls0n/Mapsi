@@ -18,7 +18,6 @@ const box = document.querySelector('.left__box');
 const weather = document.querySelector('.right__weather');
 const information = document.querySelector('.right__information');
 
-
 // Variables
 let marker;
 let map;
@@ -195,7 +194,7 @@ button_5.addEventListener('click', function (e) {
   button_4.style.cursor = 'pointer';
   button_4.style.pointerEvents = 'auto';
   button_4.style.opacity = '1';
-  
+
   mapTemplate();
 
   map.setZoom(16);
