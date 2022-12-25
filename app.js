@@ -1,4 +1,4 @@
-import './node_modules/leaflet-edgebuffer/src/leaflet.edgebuffer.js';
+import 'leaflet.edgebuffer.js';
 
 // Selectors
 const container = document.querySelector('.container');
