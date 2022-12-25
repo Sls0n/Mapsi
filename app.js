@@ -79,6 +79,7 @@ const locationSearch = async function (searchValue) {
     else map.setZoom(18);
     addMarker(lat, lng);
   } catch (err) {
+    console.error(err);
     alert(err);
   }
 };
@@ -89,7 +90,7 @@ const locationDetails = async function (lat, lng) {
     const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=${map._zoom}`);
 
     // If response is not ok, throw error
-    if (!response.ok) throw new Error(`${response.status} Problem with geocoding `);
+    if (!response.ok) throw new Error(`${response.status} Too many requests`);
     // Converting response to json if response is ok
     const data = await response.json();
 
@@ -98,6 +99,7 @@ const locationDetails = async function (lat, lng) {
 
     if (data.error) alert(`${data.error}, location not found!`);
   } catch (err) {
+    console.error(err);
     alert(err);
   }
 };
@@ -141,6 +143,7 @@ navigator.geolocation.getCurrentPosition(
   err => {
     const error = `${err.message}! Allow location to continue`;
     alert(error);
+    console.error(err);
   }
 );
 
