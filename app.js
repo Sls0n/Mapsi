@@ -27,12 +27,14 @@ const mapTemplate = function () {
   if (button_1.classList.contains('hidden-button'))
     L.tileLayer('https://{s}.tile.openstreetmap.jp/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      edgeBufferTiles: 1,
     }).addTo(map);
 
   // Satellite view
   if (button_2.classList.contains('hidden-button'))
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+      edgeBufferTiles: 1,
     }).addTo(map);
 
   addMarker(map.getCenter().lat, map.getCenter().lng, false);
