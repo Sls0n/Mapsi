@@ -53,8 +53,7 @@ const addMarker = function (lat, lng, flyTo = true) {
     // });
     map.flyTo([lat, lng]);
   }
-
-  // marker.bindPopup('Selected Country').openPopup();
+  locationDetails(lat, lng);
 };
 
 const locationSearch = async function (searchValue) {
@@ -66,7 +65,6 @@ const locationSearch = async function (searchValue) {
     if (!response.ok) throw new Error(`Problem with geocoding ${response.status}`);
     // Converting response to json if response is ok
     const data = await response.json();
-    console.log(data);
     // Getting lat and lng
     const lat = data[0].lat;
     const lng = data[0].lon;
@@ -91,10 +89,13 @@ const locationDetails = async function (lat, lng) {
     const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=${map._zoom}`);
 
     // If response is not ok, throw error
-    if (!response.ok) throw new Error(`Problem with geocoding ${response.status}`);
+    if (!response.ok) throw new Error(`${response.status} Problem with geocoding `);
     // Converting response to json if response is ok
     const data = await response.json();
-    console.log(data);
+
+    const html = `${data.display_name}`;
+    document.querySelector('.left__country').innerHTML = html;
+
     if (data.error) alert(`${data.error}, location not found!`);
   } catch (err) {
     alert(err);

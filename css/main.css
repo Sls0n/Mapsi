@@ -145,8 +145,15 @@ h6 {
   color: #c6c6c7;
 }
 .left__country {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #c6c6c7;
+  padding: 0.5rem 1rem;
   margin-top: 1rem;
-  height: 15rem;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   background-color: #272c39;
   border-radius: 1rem;
 }
