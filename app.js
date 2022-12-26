@@ -17,6 +17,7 @@ const locationBox = document.querySelector('.left__country');
 const box = document.querySelector('.left__box');
 const weather = document.querySelector('.right__weather');
 const information = document.querySelector('.right__information');
+const silson = document.querySelector('.left__logo--icon');
 
 // Variables
 let marker;
@@ -195,6 +196,9 @@ button_5.addEventListener('click', function (e) {
   button_4.style.pointerEvents = 'auto';
   button_4.style.opacity = '1';
 
+  information.classList.remove('hidden');
+  weather.classList.remove('hidden');
+
   mapTemplate();
 
   map.setZoom(16);
@@ -215,6 +219,9 @@ button_6.addEventListener('click', function (e) {
   button_3.style.opacity = '0.4';
   button_4.style.pointerEvents = 'none';
   button_4.style.opacity = '0.4';
+
+  information.classList.add('hidden');
+  weather.classList.add('hidden');
 
   box.style.cursor = 'no-drop';
 
@@ -238,10 +245,12 @@ button_2.addEventListener('click', function (e) {
 
 // Button 3 and button 4 event listeners to toggle on their respective functions
 button_3.addEventListener('click', function (e) {
+  if (button_6.classList.contains('hidden-button-2')) weather.classList.add('hidden');
   weather.classList.toggle('hidden');
 });
 
 button_4.addEventListener('click', function (e) {
+
   information.classList.toggle('hidden');
 });
 
@@ -252,4 +261,9 @@ buttons.forEach(btn => {
   btn.addEventListener('click', function (e) {
     btn.classList.toggle('hidden-button');
   });
+});
+
+silson.addEventListener('click', function (e) {
+  // Silson's github profile in new tab
+  window.open('https://www.github.com/Sls0n/mapsi', '_blank');
 });

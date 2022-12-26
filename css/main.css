@@ -109,6 +109,9 @@ h6 {
   align-items: center;
   gap: 1rem;
 }
+.left__logo--icon {
+  cursor: pointer;
+}
 .left__logo--heading {
   font-size: 1.8rem;
   font-weight: 400;
