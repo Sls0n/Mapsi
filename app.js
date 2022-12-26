@@ -196,9 +196,6 @@ button_5.addEventListener('click', function (e) {
   button_4.style.pointerEvents = 'auto';
   button_4.style.opacity = '1';
 
-  information.classList.remove('hidden');
-  weather.classList.remove('hidden');
-
   mapTemplate();
 
   map.setZoom(16);
@@ -219,6 +216,9 @@ button_6.addEventListener('click', function (e) {
   button_3.style.opacity = '0.4';
   button_4.style.pointerEvents = 'none';
   button_4.style.opacity = '0.4';
+
+  button_3.classList.remove('hidden-button');
+  button_4.classList.remove('hidden-button');
 
   information.classList.add('hidden');
   weather.classList.add('hidden');
@@ -245,12 +245,10 @@ button_2.addEventListener('click', function (e) {
 
 // Button 3 and button 4 event listeners to toggle on their respective functions
 button_3.addEventListener('click', function (e) {
-  if (button_6.classList.contains('hidden-button-2')) weather.classList.add('hidden');
   weather.classList.toggle('hidden');
 });
 
 button_4.addEventListener('click', function (e) {
-
   information.classList.toggle('hidden');
 });
 

@@ -236,6 +236,12 @@ h6 {
   margin-right: 2rem;
   padding: 1rem 1rem;
   box-shadow: 0.1rem 5rem 10rem rgba(178, 227, 0, 0.5);
+  /* From https://css.glass */
+  background: rgba(224, 224, 224, 0.13);
+  border-radius: 16px;
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border: 1px solid rgba(224, 224, 224, 0.5);
   font-size: 2rem;
 }
 .right__information {
