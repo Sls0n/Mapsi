@@ -19,6 +19,8 @@ const box = document.querySelector('.left__box');
 const weather = document.querySelector('.right__weather');
 const information = document.querySelector('.right__information');
 const silson = document.querySelector('.left__logo--icon');
+const weatherTypeHTML = document.querySelector('.weather-type');
+const temperatureHTML = document.querySelector('.right__weather--temperature');
 
 // Variables
 let marker;
@@ -61,6 +63,7 @@ const addMarker = function (lat, lng, flyTo = true) {
     // });
     map.flyTo([lat, lng]);
   }
+  weatherDetails(lat, lng);
   locationDetails(lat, lng);
 };
 
@@ -123,6 +126,24 @@ const locationDetails = async function (lat, lng) {
   }
 };
 
+const weatherDetails = async function (lat, lng) {
+  try {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=2dad590f3f45d847cf92171de9848662&units=metric`);
+    if (!response.ok) throw new Error(`${response.status} Weather details not found!`);
+    const data = await response.json();
+    console.log(data);
+
+    const main = data.weather[0].main;
+    const temp = data.main.temp;
+
+    weatherTypeHTML.textContent = main;
+    temperatureHTML.textContent = `${temp}°C`;
+  } catch (err) {
+    alert(err);
+    console.error(err);
+  }
+};
+
 navigator.geolocation.getCurrentPosition(
   res => {
     const lat = res.coords.latitude;
@@ -146,6 +167,7 @@ navigator.geolocation.getCurrentPosition(
     mapTemplate();
     // Ading default marker to map, with flyto animation set to false
     addMarker(lat, lng, false);
+    // Getting weather
 
     // On click event on the map, it will add a marker and popup
     map.on('click', function (e) {

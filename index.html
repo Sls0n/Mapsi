@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mapsi &mdash; simple yet awesome</title>
+    <title>Mapsi &mdash; by silson</title>
 
     <link rel="stylesheet" href="css/main.css" />
 
@@ -78,7 +78,21 @@
       </div>
 
       <main class="right" id="map">
-        <div class="right__weather hidden">Weather goes here</div>
+        <div class="right__weather hidden">
+          <div class="right__weather--icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="weather-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+              />
+            </svg>
+            <br />
+            <div class="weather-type"></div>
+          </div>
+
+          <div class="right__weather--temperature">20°C</div>
+        </div>
 
         <div class="right__information hidden">Country Information goes here</div>
       </main>
