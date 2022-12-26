@@ -1,3 +1,4 @@
+'use strict';
 // Main Selectors
 const container = document.querySelector('.container');
 const mapContainer = document.querySelector('#map');
@@ -264,4 +265,10 @@ buttons.forEach(btn => {
 silson.addEventListener('click', function (e) {
   // Silson's github profile in new tab
   window.open('https://www.github.com/Sls0n/mapsi', '_blank');
+});
+
+locationBox.addEventListener('click', function (e) {
+  map.flyTo(marker.getLatLng(), map._zoom, {
+    duration: 1,
+  });
 });

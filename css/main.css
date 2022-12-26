@@ -172,6 +172,7 @@ h6 {
   height: max-content;
   background-color: #272c39;
   border-radius: 1rem;
+  cursor: pointer;
 }
 .left__display {
   margin-top: 4rem;
