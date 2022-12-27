@@ -7,7 +7,6 @@ const button = document.querySelector('.button');
 const button_1 = document.querySelector('.button-1');
 const button_2 = document.querySelector('.button-2');
 const button_3 = document.querySelector('.button-3');
-const button_4 = document.querySelector('.button-4');
 const button_5 = document.querySelector('.button-5');
 const button_6 = document.querySelector('.button-6');
 // Other selectors
@@ -228,9 +227,6 @@ button_5.addEventListener('click', function (e) {
   button_3.style.cursor = 'pointer';
   button_3.style.pointerEvents = 'auto';
   button_3.style.opacity = '1';
-  button_4.style.cursor = 'pointer';
-  button_4.style.pointerEvents = 'auto';
-  button_4.style.opacity = '1';
 
   mapTemplate();
 
@@ -250,11 +246,9 @@ button_6.addEventListener('click', function (e) {
   button_2.style.opacity = '0.4';
   button_3.style.pointerEvents = 'none';
   button_3.style.opacity = '0.4';
-  button_4.style.pointerEvents = 'none';
-  button_4.style.opacity = '0.4';
+ 
 
   button_3.classList.remove('hidden-button');
-  button_4.classList.remove('hidden-button');
 
   information.classList.add('hidden');
   weather.classList.add('hidden');
@@ -282,10 +276,6 @@ button_2.addEventListener('click', function (e) {
 // Button 3 and button 4 event listeners to toggle on their respective functions
 button_3.addEventListener('click', function (e) {
   weather.classList.toggle('hidden');
-});
-
-button_4.addEventListener('click', function (e) {
-  information.classList.toggle('hidden');
 });
 
 // Looping through all the buttons and adding event listener to each button

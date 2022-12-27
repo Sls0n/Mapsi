@@ -236,13 +236,13 @@ h6 {
   background: linear-gradient(90deg, #1c202a 0%, #1b1f27 100%);
   z-index: 100000;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-left: 3rem;
-  margin-bottom: 3rem;
+  top: 0;
+  right: 0;
+  margin-right: 1rem;
+  margin-top: 1rem;
   padding: 2rem 1rem;
   font-family: 2rem;
-  border-radius: 16px;
+  border-radius: 2rem;
   border: 1px solid #413f41;
   font-family: "Inter", sans-serif;
 }
