@@ -19,6 +19,7 @@ const box = document.querySelector('.left__box');
 const weather = document.querySelector('.right__weather');
 const information = document.querySelector('.right__information');
 const silson = document.querySelector('.left__logo--icon');
+const weatherIconHTML = document.querySelector('.right__weather--icon');
 const weatherTypeHTML = document.querySelector('.weather-type');
 const temperatureHTML = document.querySelector('.right__weather--temperature');
 
@@ -100,7 +101,6 @@ const locationSearch = async function (searchValue) {
     addMarker(lat, lng);
   } catch (err) {
     console.error(err);
-    alert(err);
   }
 };
 
@@ -110,36 +110,49 @@ const locationDetails = async function (lat, lng) {
     const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=${map._zoom}`);
 
     // If response is not ok, throw error
-    if (!response.ok) throw new Error(`${response.status} Too many requests`);
+    if (!response.ok) {
+      alert(`${response.status} Too many requests`);
+      throw new Error(`${response.status} Too many requests`);
+    }
     // Converting response to json if response is ok
     const data = await response.json();
 
     const html = `${data.display_name}`;
     locationBox.innerHTML = html;
 
-    if (data.error) alert(`${data.error}, location not found!`);
+    if (data.error) {
+      locationBox.innerHTML = 'Location not found! Please try again with a different search term or check the spelling.';
+      throw new Error('Location not found!');
+    }
 
     if (data.class === 'tourism') map.setZoom(18);
   } catch (err) {
     console.error(err);
-    alert(err);
   }
 };
 
 const weatherDetails = async function (lat, lng) {
   try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=2dad590f3f45d847cf92171de9848662&units=metric`);
-    if (!response.ok) throw new Error(`${response.status} Weather details not found!`);
+    if (!response.ok) {
+      weatherIconHTML.innerHTML = 'Weather not found!';
+      temperatureHTML.textContent = `ERROR`;
+    }
     const data = await response.json();
-    console.log(data);
 
     const main = data.weather[0].main;
     const temp = data.main.temp;
 
-    weatherTypeHTML.textContent = main;
     temperatureHTML.textContent = `${temp}°C`;
+
+    // Changing weather icon according to weather type
+    const iconHTML = `
+    <svg class="weather-icon">
+       <use xlink:href="img/symbol-defs.svg#icon-${main}"></use>
+    </svg>
+    <div class="weather-type">${main}</div>`;
+    weatherIconHTML.innerHTML = iconHTML;
   } catch (err) {
-    alert(err);
     console.error(err);
   }
 };
