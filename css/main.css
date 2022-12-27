@@ -244,6 +244,7 @@ h6 {
   font-family: 2rem;
   border-radius: 2rem;
   border: 1px solid #413f41;
+  box-shadow: 4px 8px 8px hsla(0deg, 0%, 0%, 0.38);
   font-family: "Inter", sans-serif;
 }
 .right__weather--icon {
