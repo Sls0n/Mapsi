@@ -297,6 +297,7 @@ locationBox.addEventListener('click', function (e) {
   });
 });
 
-if (module.hot) {
-  module.hot.accept();
-}
+// For parcel ignore
+// if (module.hot) {
+//   module.hot.accept();
+// }
