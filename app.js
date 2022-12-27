@@ -246,7 +246,6 @@ button_6.addEventListener('click', function (e) {
   button_2.style.opacity = '0.4';
   button_3.style.pointerEvents = 'none';
   button_3.style.opacity = '0.4';
- 
 
   button_3.classList.remove('hidden-button');
 
@@ -297,3 +296,7 @@ locationBox.addEventListener('click', function (e) {
     duration: 1,
   });
 });
+
+if (module.hot) {
+  module.hot.accept();
+}

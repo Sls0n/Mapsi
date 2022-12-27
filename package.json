@@ -1,0 +1,22 @@
+{
+  "name": "mapsi",
+  "version": "1.1.2",
+  "description": " Mapsi, a simple web app made using vanilla javascript that allows you to explore and discover new locations with bunch of added features. ",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sls0n/mapsi"
+  },
+  "author": "Slson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sls0n/mapsi/issues"
+  },
+  "homepage": "https://github.com/Sls0n/mapsi#readme",
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  }
+}
