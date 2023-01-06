@@ -1,0 +1,36 @@
+.icon {
+  color: #f6f6f6;
+  border-radius: 0.5rem;
+  background-color: #313644;
+
+  font-size: 1.8rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.weather-icon {
+  width: 12rem;
+  height: 12rem;
+  color: #c6c6c7;
+  fill: #c6c6c7;
+
+}
+
+.weather-type {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c6c6c7;
+  text-transform: uppercase;
+  background-color: #272c39;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+
+.transition {
+  transition: all 0.3s ease;
+}

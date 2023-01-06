@@ -1,4 +1,7 @@
 'use strict';
+// import icon
+import icons from 'url:./img/symbol-defs.svg';
+
 // Main Selectors
 const container = document.querySelector('.container');
 const mapContainer = document.querySelector('map');
@@ -75,8 +78,6 @@ class Mapsi {
             const lat = e.latlng.lat;
             const lng = e.latlng.lng;
 
-            // if marker exists, remove it (basically removing the old marker when the user clicks on a new location on the map, so there is only one marker at a time on the map, not multiple markers on the map at the same time). A guard clause
-
             this._addMarker(lat, lng);
             this._locationDetails(lat, lng);
           }.bind(this)
@@ -120,6 +121,9 @@ class Mapsi {
 
   _addMarker(lat, lng, flyTo = true) {
     // flyTo = true, to make the default marker not use the flyTo animation when the user loads the page. But it will use the flyTo animation when the user clicks on the map to add a marker.
+
+    // if marker exists, remove it (basically removing the old marker when the user clicks on a new location on the map, so there is only one marker at a time on the map, not multiple markers on the map at the same time). A guard clause
+
     if (this.marker) this.map.removeLayer(this.marker);
 
     this.marker = L.marker([lat, lng]).addTo(this.map);
@@ -224,7 +228,7 @@ class Mapsi {
       // Changing weather icon according to weather type
       const iconHTML = `
       <svg class="weather-icon">
-         <use xlink:href="img/symbol-defs.svg#icon-${main}"></use>
+         <use xlink:href="${icons}#icon-${main}"></use>
       </svg>
       <div class="weather-type">${main}</div>`;
       weatherIconHTML.innerHTML = iconHTML;
@@ -330,25 +334,22 @@ silson.addEventListener('click', function (e) {
 
 const mapsi = new Mapsi();
 
-// When the screen width is below 700px, make a modal window saying that the app is not optimized and responsive for this device and use it on PC or laptop. The modal window will be closed when the user clicks on the close button or anywhere outside the modal window.
+// Restricting the app to be used only on PC or laptop
 
-if (window.innerWidth < 700) {
-  const markup = `
-  <div class="modal">
-    <div class="modal__content">
-      <div class="modal__close">&times;</div>
-      <div class="modal__text">
-        <h2 class="modal__heading">This app is not optimized and responsive for mobile devices.</h2>
-        <p class="modal__paragraph">Please use it on PC or laptop.</p>
-      </div>
-    </div>
-  </div>
-  
-  `;
-  document.body.insertAdjacentHTML('afterbegin', markup);
-  document.querySelector('.modal').addEventListener('click', function (e) {
-    if (e.target.classList.contains('modal__close') || e.target.classList.contains('modal')) {
-      document.querySelector('.modal').style.display = 'none';
-    }
-  });
+if (window.innerWidth < 500) {
+  const modalHTML = `
+  <center class="modal">
+    <center class="modal__content">
+      <center class="modal__text">
+        <h2 class="modal__heading">Sorry, This app is not optimized and responsive for mobile devices. You need to use PC in order to use this :(</h2> <br> <br>
+        <p class="modal__paragraph">Please use it on PC or laptop. Or try using desktop mode in the mobile.</p> <br> <br>
+        <a style="color: #333; background-color: #b3acfc; padding: 2rem; text-decoration: none; border-radius: 1rem;" href="https://www.github.com/Sls0n/mapsi">Contribute</a>
+      </center>
+    </center>
+  </center>`;
+
+  container.innerHTML = '';
+  container.insertAdjacentHTML('afterbegin', modalHTML);
 }
+
+console.log('Made with ❤️ by Silson');
