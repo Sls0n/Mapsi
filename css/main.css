@@ -16,14 +16,19 @@ body {
 html {
   font-size: 62.5%;
 }
-@media only screen and (max-width: 1330px) {
+@media only screen and (max-width: 1390px) {
   html {
-    font-size: 59%;
+    font-size: 60%;
   }
 }
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 900px) {
   html {
-    font-size: 54%;
+    font-size: 55%;
+  }
+}
+@media only screen and (max-width: 750px) {
+  html {
+    font-size: 52.5%;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -119,19 +124,24 @@ h6 {
   flex-basis: 20vw;
   padding: 0rem 2rem;
 }
-@media only screen and (max-width: 1330px) {
+@media only screen and (max-width: 1390px) {
   .left {
     flex-basis: 25vw;
   }
 }
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 900px) {
   .left {
-    flex-basis: 35vw;
+    flex-basis: 31vw;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .left {
+    flex-basis: 40vw;
   }
 }
 @media only screen and (max-width: 500px) {
   .left {
-    flex-basis: 45vw;
+    flex-basis: 44vw;
   }
 }
 .left__logo {
