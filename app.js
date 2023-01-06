@@ -329,3 +329,26 @@ silson.addEventListener('click', function (e) {
 });
 
 const mapsi = new Mapsi();
+
+// When the screen width is below 700px, make a modal window saying that the app is not optimized and responsive for this device and use it on PC or laptop. The modal window will be closed when the user clicks on the close button or anywhere outside the modal window.
+
+if (window.innerWidth < 700) {
+  const markup = `
+  <div class="modal">
+    <div class="modal__content">
+      <div class="modal__close">&times;</div>
+      <div class="modal__text">
+        <h2 class="modal__heading">This app is not optimized and responsive for mobile devices.</h2>
+        <p class="modal__paragraph">Please use it on PC or laptop.</p>
+      </div>
+    </div>
+  </div>
+  
+  `;
+  document.body.insertAdjacentHTML('afterbegin', markup);
+  document.querySelector('.modal').addEventListener('click', function (e) {
+    if (e.target.classList.contains('modal__close') || e.target.classList.contains('modal')) {
+      document.querySelector('.modal').style.display = 'none';
+    }
+  });
+}
