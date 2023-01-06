@@ -1,6 +1,9 @@
 'use strict';
 // import icon
 import icons from 'url:./img/symbol-defs.svg';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 
 // Main Selectors
 const container = document.querySelector('.container');
