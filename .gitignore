@@ -1,3 +1,4 @@
 node_modules
 .prettierrc
 .parcel-cache
+css/main.css.map
