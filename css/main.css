@@ -16,17 +16,12 @@ body {
 html {
   font-size: 62.5%;
 }
-@media only screen and (max-width: 900px) {
-  html {
-    font-size: 55%;
-  }
-}
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 950px) {
   html {
     font-size: 50%;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   html {
     font-size: 45%;
   }
