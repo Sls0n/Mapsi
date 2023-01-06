@@ -16,19 +16,19 @@ body {
 html {
   font-size: 62.5%;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1250px) {
   html {
-    font-size: 53%;
+    font-size: 56%;
   }
 }
 @media only screen and (max-width: 800px) {
   html {
-    font-size: 45%;
+    font-size: 50%;
   }
 }
 @media only screen and (max-width: 500px) {
   html {
-    font-size: 40%;
+    font-size: 45%;
   }
 }
 
@@ -119,7 +119,7 @@ h6 {
   flex-basis: 20vw;
   padding: 0rem 2rem;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1250px) {
   .left {
     flex-basis: 30vw;
   }
