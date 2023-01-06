@@ -263,6 +263,8 @@ class Mapsi {
     this._setElementStatus(aerialView, true);
     this._setElementStatus(liveWeather, true);
 
+    box.style.cursor = 'auto';
+
     this._mapTemplate();
 
     this.map.setZoom(16);
